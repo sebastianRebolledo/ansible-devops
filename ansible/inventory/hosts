@@ -1,0 +1,5 @@
+[ui]
+Frontend    ansible_connection=local
+
+[jen]
+Jenkins     ansible_connection=local

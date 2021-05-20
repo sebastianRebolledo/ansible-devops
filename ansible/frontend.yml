@@ -1,0 +1,44 @@
+- hosts: ui
+  become: yes
+  become_user: root
+  become_method: sudo
+
+
+  tasks:
+    - name: Get information on appFront container
+        docker_container_info: 
+          name: appFront
+        register: result
+
+    - name: Does container exit?
+      ansible.builtin.debug:
+        msg: "The container {{ 'exists' if result.exists else 'does not exist' }}"
+      
+    - name : Stop container 
+      docker_container:
+        name: appFront 
+        state: stopped
+      when: result.exists
+
+    - name : Remove container
+       docker_container:
+         name: appFront
+         state: absent
+    
+    - name : Remove image
+      docker_image:
+        state: absent
+        name: appFront
+    
+    - name: Execute docker container
+      docker_container:
+        name: appFront
+        image: manuel11coral34/frontend
+        state: started
+        pull: true
+        published_ports:
+          - "8080:8080"
+        env:
+          - BACK_HOST: '{{ back_host }}'
+          
+
