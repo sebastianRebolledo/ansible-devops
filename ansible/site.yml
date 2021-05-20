@@ -1,3 +1,1 @@
-- import_playbook: all.yml
-- import_playbook: frontend.yml
 - import_playbook: jenkins.yml
