@@ -23,14 +23,14 @@
          state: present
 
      - name: Descargar llave
-         shell: wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+        shell: wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
        #apt_key:
         # url: "https://pkg.jenkins.io/debian/jenkins-ci.org.key"
         # state: present
        #command: wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
        
      - name: Obtener repositorio Jenkins
-         shell: sh -c 'echo deb http://pkg.jenkins-ci.org/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+        shell: sh -c 'echo deb http://pkg.jenkins-ci.org/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
        #apt_repository:
          #repo: deb http://pkg.jenkins.io/debian-stable binary/
          #update_cache: yes
