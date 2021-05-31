@@ -23,14 +23,26 @@
 
     - name: Install Jenkins server
       apt: name=jenkins state=present
+    
+    - name: Wait for Jenkins to start up
+      wait_for: timeout=35
 
-    - name: Install additional Python packages
-      pip: name={{ item }} state=latest
-      with_items:
-      - ansible
-      - boto
-      - flake8
-      - passlib
+    - name: Get Jenkins password
+      shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+      changed_when: false
+      register: result
+
+    - name: Password to "Unlock Jenkins"
+      debug:
+        var: result.stdout
+
+    #- name: Install additional Python packages
+     # pip: name={{ item }} state=latest
+      #with_items:
+      #- ansible
+      #- boto
+      #- flake8
+      #- passlib
      #- name: Install wget
       # apt:
       # name: wget
