@@ -32,9 +32,10 @@
       changed_when: false
       register: result
 
-    - name: Password to "Unlock Jenkins"
+    - name: Password to entry jenkins
       debug:
         var: result.stdout
+      
 
     #- name: Install additional Python packages
      # pip: name={{ item }} state=latest
