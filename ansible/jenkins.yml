@@ -12,6 +12,12 @@
       - libffi-dev
       - libncurses5-dev
 
+      - name: Install pip
+        apt:
+        name: python3-pip
+        update_cache: yes
+        state: present
+
     - name: Add the Jenkins public GPG key to the apt repo
       apt_key: url=http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
                state=present 
