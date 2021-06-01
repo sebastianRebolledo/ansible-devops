@@ -8,4 +8,4 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker ubuntu
 sudo usermod -aG docker jenkins
-sudo service jenkins restart
+sudo service jenkins restartl
